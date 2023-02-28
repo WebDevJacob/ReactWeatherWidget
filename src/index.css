@@ -10,94 +10,127 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #2a2a2a;
+  background-color: #191919;
 }
 
 .app{
   margin: 1rem auto;
   padding: 0.5rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 0.5rem;
   width: 90vw;
-  background-color: #222;
+  max-width: 800px;
+  background-color: #202020;
   border-radius: 6px;
   color: #fff;
-  height: 35vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 5fr;
+  grid-template-areas: 
+  "locdate locdate"
+  "largeCard smallCards";
+  gap: 0.5rem;
 }
 
 .card{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: #272727;
-  padding: 1rem;
-  border-radius: 3px;
-  height: 100%;
-}
-
-.card-large{
-  flex-direction: column;
-  width: 50%;
-  gap: 0.5rem;
-}
-
-.data-row{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  gap: 0.5rem;
+  background-color: #191919;
   padding: 0.5rem;
   border-radius: 3px;
-  background-color: #333;
+  height: 100%;
 }
 
 .icon{
   font-size: 1.5rem;
 }
 
-.small-cards{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.25rem;
-  width: 50%;
-  height: 100%;
-}
-
-.card-small{
-  width: 100%;
+.location-and-date{
+  grid-area: locdate;
+  justify-content: flex-start;
   gap: 0.5rem;
 }
 
+.location-select{
+  background-color: #202020;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  /* border: none; */
+}
+
+.location-select option{
+  padding: 0.25rem ;
+}
+
+.card-large{
+  grid-area: largeCard;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+  "icon"  
+  "data";
+}
+
+.icon-large{
+  grid-area: icon;
+  font-size: 6rem;
+  text-align: center;
+}
+
+.card-large-data-cells{
+  grid-area: data;
+}
+
 .data-cell{
-  position: relative;
-
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0.25rem ;
 }
 
-.data-cell:not(.data-cell:last-child):after{
-  content: "";
-  width: 1px;
-  height: 1.5rem;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  right: -0.25rem;
-  transform: translateY(-50%);
-  background-color: #fff;
+.data-cell.accent{
+  padding: 0.5rem;
+  gap: 0.25rem;
+  border-radius: 3px;
+  background-color: #202020;
 }
 
+.small-cards, .card-large-data-cells{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-@media (max-width: 600px) {
+.small-cards{
+  grid-area: smallCards;
+}
+
+.card-small{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1.5fr 3fr 2fr;
+}
+
+.cell-weather-icon{
+  font-size: 2rem;
+}
+
+@media (max-width: 700px) {
   .app{
-    flex-direction: column;
-    height: auto;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas: 
+    "locdate locdate"
+    "largeCard largeCard"
+    "smallCards smallCards";
   }
 
-  .card-large, .small-cards{
-    width: 100%;
+  .card-large{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr ;
+    grid-template-areas: 
+    "icon data"
   }
 }
