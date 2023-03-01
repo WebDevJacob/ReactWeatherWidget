@@ -15,9 +15,8 @@ body {
 }
 
 .app{
-  margin: 0.5rem ;
   padding: 0.5rem;
-  width: 95vw;
+  width: 100vw;
   max-width: 800px;
   background-color: #202020;
   border-radius: 6px;
